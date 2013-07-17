@@ -43,3 +43,9 @@
  * the built-in default routes.
  */
 	require CAKE . 'Config' . DS . 'routes.php';
+
+/**
+ * Enable parse extensins
+ */
+Router::setExtensions(array('json', 'xml'));
+Router::parseExtensions();

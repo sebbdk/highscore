@@ -7,6 +7,11 @@
  */
 abstract class AppController extends Controller {
 
+	public $components = array(
+		'RequestHandler',
+		'Crud.Crud'
+	);
+
 /**
  * List of components which can handle action invocation
  * @var array
