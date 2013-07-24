@@ -9,7 +9,19 @@ abstract class AppController extends Controller {
 
 	public $components = array(
 		'RequestHandler',
-		'Crud.Crud'
+		'Crud.Crud' => array(
+			'actions' => array(
+				// The controller action 'index' will map to the IndexCrudAction
+				'index' => 'Crud.Index',
+				// The controller action 'add' will map to the AddCrudAction
+				'view'  => 'Crud.View'
+			),
+			'listeners' => array(
+				'Api' => array(
+					'className' => 'Crud.Api'
+				)
+			)
+		)
 	);
 
 /**
