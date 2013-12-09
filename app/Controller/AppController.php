@@ -8,21 +8,45 @@
 abstract class AppController extends Controller {
 
 	public $components = array(
+		'Session',
 		'RequestHandler',
 		'Crud.Crud' => array(
 			'actions' => array(
 				// The controller action 'index' will map to the IndexCrudAction
 				'index' => 'Crud.Index',
 				// The controller action 'add' will map to the AddCrudAction
-				'view'  => 'Crud.View'
+				'view'  => 'Crud.View',
+				'add'  => 'Crud.add',
 			),
 			'listeners' => array(
 				'Api' => array(
 					'className' => 'Crud.Api'
 				)
 			)
-		)
+		),
+		'Auth' => array(
+			'loginRedirect' => array(
+				'plugin' => 'post_cards', 
+				'controller' => 'post_cards', 
+				'action' => 'index'
+			),
+			'logoutRedirect' => array(
+				'plugin' => 'users', 
+				'controller' => 'users',
+				'action' => 'asd'
+			)
+		)	
 	);
+
+	public function beforeFilter() {
+
+
+		if(isset($this->request->params['admin']) && $this->request->params['admin'] === true) {
+			$this->theme = 'Backend';
+		}
+		
+		parent::beforeFilter();
+	}
 
 /**
  * List of components which can handle action invocation
