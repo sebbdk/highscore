@@ -47,7 +47,7 @@ class AssetFile extends AppModel {
 		}
 	}
 	
-	public function afterFind($items){
+	public function afterFind($items, $primary = false){
 		parent::afterFind($items);
 		foreach($items as $index => $item ) {
 			if(isset($items[$index][$this->alias])) {
@@ -59,9 +59,34 @@ class AssetFile extends AppModel {
 		
 		return $items;
 	}
-	
-	public function add($folder, $file) {
-		$folder = $folder;
+
+/**
+ * Handles files being added
+ *
+ * the file array can be eith:
+ * 	- the raw data from $_FILE['somename']
+ * 	- array('file_path' => '...', 'name' => 'xyz')
+ * 		^ add a local file
+ * 	- array('file_download' => '...', 'name' => 'xyz')
+ * 		^ fetch a file from the web
+ * 
+ * @todo  clean up the uplaoded files if it fails...
+ * 
+ * @param  array  $options save options
+ * @return boolean
+ */
+	public function beforeSave($options = array()) {
+		/**
+		 * Make sure we have a folder
+		 */
+		if(!isset($this->data[$this->alias]['folder'])) {
+			$this->data[$this->alias]['folder'] = 'default';
+		}
+		$folder = $this->data[$this->alias]['folder'];
+
+		/**
+		 * Set up directories
+		 */
 		$folder_url = WWW_ROOT.'files/assets'.DS.$folder;
 		$rel_url = $folder_url.DS.'original';
 		
@@ -71,40 +96,49 @@ class AssetFile extends AppModel {
 		
 		if(!is_dir($rel_url)) {
 			mkdir($rel_url, 0777, true);
+		}		
+
+		/**
+		 * if we have a file, process it and add the file data to oure data array
+		 */
+		if(isset($this->data[$this->alias]['file'])) {
+			try {
+				$file = $this->data[$this->alias]['file'];
+				$id = String::uuid();
+				if(isset($file['tmp_name'])) {//is uploaded file object
+					$parts = explode(".", $file['name']);
+					$extention = array_pop($parts);
+					$url = $rel_url.'/'.$id.'.'.$extention;
+					$success = move_uploaded_file($file['tmp_name'], $url);
+				} else if(isset($file['file_path'])){//is file on server
+					$extention = array_pop(explode(".", $file['file_path']));
+					$url = $rel_url.'/'.$id.'.'.$extention;
+					copy($file['file_path'], $url);
+					$success = true;
+				} else if(isset($file['file_download'])){
+					set_time_limit(30);//give php some time to fetch the file
+					$extention = array_pop(explode(".", $file['name']));
+					$url = $rel_url.'/'.$id.'.'.$extention;
+					file_put_contents($url, file_get_contents($file['file_download']));
+					$success = true;
+				}
+
+				//merge the resulting file info into oure data
+				$this->data[$this->alias] = array_merge(array(				
+					'id' => $id,
+					'folder' => $folder,
+					'name' => $file['name'],
+					'size' => filesize($url),
+					'is_image' => ((in_array(strtolower($extention), $this->imageTypes)) ? 1:0),
+					'extension' => $extention
+				), $this->data[$this->alias]);
+			} catch(Exception $e) {
+				echo 'Caught exception while saving file: ',  $e->getMessage(), "\n";
+			}
 		}
-		
-		$id = String::uuid();
-		if(isset($file['tmp_name'])) {//is uploaded file object
-			$extention = array_pop(explode(".", $file['name']));
-			$url = $rel_url.'/'.$id.'.'.$extention;
-			$success = move_uploaded_file($file['tmp_name'], $url);
-		} else if(isset($file['file_path'])){//is file on server
-			$extention = array_pop(explode(".", $file['file_path']));
-			$url = $rel_url.'/'.$id.'.'.$extention;
-			copy($file['file_path'], $url);
-			$success = true;
-		} else if(isset($file['file_download'])){
-			set_time_limit(30);//give php some time to fetch the file
-			$extention = array_pop(explode(".", $file['name']));
-			$url = $rel_url.'/'.$id.'.'.$extention;
-			file_put_contents($url, file_get_contents($file['file_download']));
-			$success = true;
-		}
-		
-		if($success) {
-			$this->create();
-			$success = $this->save(array(
-				'id' => $id,
-				'folder' => $folder,
-				'name' => $file['name'],
-				'size' => filesize($url),
-				'is_image' => ((in_array(strtolower($extention), $this->imageTypes)) ? 1:0),
-				'extension' => $extention,
-			));
-		}
-		return $success;
+
+		return true;		
 	}
-	
 
 	public function OCRIndex($item){
 		$path = 'webroot'.AssetFile::url($item[$this->alias]['id']);

@@ -38,11 +38,7 @@ class AssetFilesController extends AppController {
 		$this->data = $this->AssetFile->read(null, $id);
 	}
 	
-	public function add($field, $domid, $id = null){
-		$this->admin_add($field, $domid, $id = null);
-	}
-	
-	public function admin_add($field, $domid, $id = null){
+	public function admin_add($id = null){
 		$this->layout = 'upload';
 		
 		$data = null;
@@ -75,7 +71,7 @@ class AssetFilesController extends AppController {
 		
 		$this->set('data', $data);
 		
-		$this->render('admin_form');
+	//	$this->render('admin_form');
 	}
 	
 	public function admin_ocr($id){
