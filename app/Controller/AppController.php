@@ -39,7 +39,9 @@ abstract class AppController extends Controller {
 	);
 
 	public function beforeFilter() {
-
+		if(!isset($this->request->params['admin'])) {
+			$this->Auth->allow();
+		}
 
 		if(isset($this->request->params['admin']) && $this->request->params['admin'] === true) {
 			$this->theme = 'Backend';

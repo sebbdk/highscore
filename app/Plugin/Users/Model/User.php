@@ -8,7 +8,12 @@ class User extends AppModel {
 			'required' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'A username is required'
-			)
+			),
+			'unique' => array(
+				'rule'		=> 'isUnique',
+				'message'	=> 'Brugernavn er optaget',
+				'on'         => 'create'
+			)	
 		),
 		'password' => array(
 			'required' => array(
