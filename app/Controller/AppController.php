@@ -26,8 +26,8 @@ abstract class AppController extends Controller {
 		),
 		'Auth' => array(
 			'loginRedirect' => array(
-				'plugin' => 'post_cards', 
-				'controller' => 'post_cards', 
+				'plugin' => 'users', 
+				'controller' => 'users', 
 				'action' => 'index'
 			),
 			'logoutRedirect' => array(
