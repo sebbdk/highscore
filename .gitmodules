@@ -7,3 +7,6 @@
 [submodule "app/Plugin/Crud"]
 	path = app/Plugin/Crud
 	url = https://github.com/jippi/cakephp-crud.git
+[submodule "app/Plugin/Translations"]
+	path = app/Plugin/Translations
+	url = https://github.com/AD7six/cakephp-translations.git
