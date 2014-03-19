@@ -12,3 +12,9 @@ Configure::write('Assets.sizes.admin_248x300', array(
 	'width' => 248,
 	'height' => 300,
 ));
+
+//schema install configurations
+Configure::write('Install.schemas.assets', array(
+	'plugin' => 'Assets',
+	'name' => 'Asset'
+));

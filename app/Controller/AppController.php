@@ -7,6 +7,8 @@
  */
 abstract class AppController extends Controller {
 
+	public $theme = 'Backend';
+
 	public $components = array(
 		'Session',
 		'RequestHandler',
@@ -52,6 +54,16 @@ abstract class AppController extends Controller {
 		}
 		
 		parent::beforeFilter();
+	}
+
+	function beforeRender(){
+		if ($this->Session->check('Message.flash')) {
+			$flash = $this->Session->read('Message.flash');
+			if ($flash['element'] == 'default') {
+				$flash['element'] = 'flash_success';
+				$this->Session->write('Message.flash', $flash);
+			}
+		}
 	}
 
 /**

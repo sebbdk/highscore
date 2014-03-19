@@ -1,0 +1,16 @@
+/* 
+* @Author: kasperjensen
+* @Date:   2014-03-19 11:54:48
+* @Last Modified by:   kasperjensen
+* @Last Modified time: 2014-03-19 12:08:37
+*/
+
+.list-group-item.warning {
+	background-color: #f0ad4e;
+	color: #ffffff;
+}
+
+.list-group-item.error {
+	background-color: #d9534f;
+	color: #ffffff;
+}
