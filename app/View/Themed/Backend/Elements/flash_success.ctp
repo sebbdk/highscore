@@ -1,3 +1,3 @@
-<div class="alert alert-success">
-	<?php echo __($message); ?>
+<div class="alert alert-info">
+	<?php echo $message; ?>
 </div>

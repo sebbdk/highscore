@@ -1,10 +1,6 @@
 <?php
 	App::uses('AuthComponent', 'Controller/Component');
 
-	if($this->Session->read('Message.flash')) {
-		//$this->Session->write('Message.flash.element', 'flash');
-	}
-
 	//sort menu items
 	$menuItems = array();
 	if(Configure::read('adminMenu')) {
@@ -33,14 +29,22 @@
 
 		echo $this->Html->css('bootstrap');
 		echo $this->Html->css('justified-nav');
+		echo $this->Html->css('backend');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+
+	<style type="text/css" media="screen">
+		.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+			vertical-align: middle;
+		}
+	</style>	
+	
 </head>
 <body>
-	<div class="container">	
+	<div class="container load">	
 
 		<?php if(AuthComponent::user()) : ?>
 			<div class="masthead">
@@ -67,6 +71,7 @@
 
 		<?= $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'); ?>
 		<?= $this->Html->script('dropdown'); ?>
+		<?= $this->Html->script('backend'); ?>
 
 	    <div class="jumbotron">
 			<?php //echo $this->element('sql_dump'); ?>
