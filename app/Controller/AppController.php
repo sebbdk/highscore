@@ -41,9 +41,13 @@ abstract class AppController extends Controller {
 	public function beforeFilter() {
 		if(!isset($this->request->params['admin'])) {
 			$this->Auth->allow();
+		}		
+
+		if($this->request->prefix === 'admin' && $this->Auth->user('rank') != 'admin') {
+			$this->Auth->deny();
 		}
 
-		if(isset($this->request->params['admin']) && $this->request->params['admin'] === true) {
+		if($this->request->prefix === 'admin') {
 			$this->theme = 'Backend';
 		}
 		
