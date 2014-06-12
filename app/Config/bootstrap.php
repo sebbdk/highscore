@@ -73,9 +73,10 @@ Cache::config('default', array('engine' => 'File'));
  */
 CakePlugin::load('DebugKit', array());
 CakePlugin::load('Crud', array());
+CakePlugin::load('Install', array( 'routes' => true, 'bootstrap' => true));
 CakePlugin::load('Assets', array( 'routes' => true, 'bootstrap' => true));
 CakePlugin::load('Users', array( 'routes' => true, 'bootstrap' => true));
-CakePlugin::load('Install', array( 'routes' => true, 'bootstrap' => true));
+CakePlugin::load('Carebot');
 
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:

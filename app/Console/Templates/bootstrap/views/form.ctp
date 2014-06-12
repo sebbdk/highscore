@@ -31,9 +31,7 @@
 
 	<div class="row">
 
-		<?php echo "<?php echo \$this->element('sidebar'); ?>"; ?>
-
-		<div class="col-md-9">
+		<div class="col-md-12">
 <?php 		echo "\t\t\t<?php echo \$this->Form->create('{$modelClass}', array('role' => 'form')); ?>\n\n"; ?>
 <?php
 		foreach ($fields as $field) {
