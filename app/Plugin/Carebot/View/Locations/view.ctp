@@ -33,6 +33,13 @@
 			&nbsp;
 		</td>
 </tr>
+<tr>
+		<th><?php echo __('Created'); ?></th>
+		<td>
+			<?php echo h($location['Location']['created']); ?>
+			&nbsp;
+		</td>
+</tr>
 				</tbody>
 			</table>
 

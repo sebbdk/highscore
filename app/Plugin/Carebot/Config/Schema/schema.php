@@ -12,6 +12,7 @@ class CarebotSchema extends CakeSchema {
 		'id' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1', 'key' => 'primary'),
 		'latitude' => array('type' => 'float', 'null' => false, 'default' => null, 'unsigned' => false),
 		'longitude' => array('type' => 'float', 'null' => false, 'default' => null, 'unsigned' => false),
+		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
 		'indexes' => array(
 			
 		),
