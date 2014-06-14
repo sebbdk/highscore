@@ -1,9 +1,9 @@
-<div class="locations form">
+<div class="images form">
 
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h3><?php echo __('Edit Location'); ?></h3>
+				<h3><?php echo __('Edit Image'); ?></h3>
 			</div>
 		</div>
 	</div>
@@ -13,16 +13,16 @@
 	<div class="row">
 
 		<div class="col-md-12">
-			<?php echo $this->Form->create('Location', array('role' => 'form')); ?>
+			<?php echo $this->Form->create('Image', array('role' => 'form')); ?>
 
 				<div class="form-group">
 					<?php echo $this->Form->input('id', array('class' => 'form-control', 'placeholder' => 'Id'));?>
 				</div>
 				<div class="form-group">
-					<?php echo $this->Form->input('latitude', array('class' => 'form-control', 'placeholder' => 'Latitude'));?>
+					<?php echo $this->Form->input('name', array('class' => 'form-control', 'placeholder' => 'Name'));?>
 				</div>
 				<div class="form-group">
-					<?php echo $this->Form->input('longitude', array('class' => 'form-control', 'placeholder' => 'Longitude'));?>
+					<?php echo $this->element('Assets.asset_file_uploader', ['field' => 'asset_file']);?>
 				</div>
 				<div class="form-group">
 					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>

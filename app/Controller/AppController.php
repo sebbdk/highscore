@@ -14,11 +14,11 @@ abstract class AppController extends Controller {
 		'RequestHandler',
 		'Crud.Crud' => array(
 			'actions' => array(
-				// The controller action 'index' will map to the IndexCrudAction
-				'index' => 'Crud.Index',
-				// The controller action 'add' will map to the AddCrudAction
 				'view'  => 'Crud.View',
 				'add'  => 'Crud.add',
+				'delete'  => 'Crud.delete',
+				'edit'  => 'Crud.edit',
+				'index'  => 'Crud.index'
 			),
 			'listeners' => array(
 				'Api' => array(

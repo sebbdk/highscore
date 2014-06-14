@@ -38,6 +38,14 @@
 			if (strpos($action, 'add') !== false && $field == $primaryKey) {
 				continue;
 			} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
+
+				if($field == 'asset_file') {
+					echo "\t\t\t\t<div class=\"form-group\">\n";
+					echo "\t\t\t\t\t<?php echo \$this->element('Assets.asset_file_uploader', ['field' => '{$field}']);?>\n";	
+					echo "\t\t\t\t</div>\n";
+					continue;
+				}
+
 				echo "\t\t\t\t<div class=\"form-group\">\n";
 				echo "\t\t\t\t\t<?php echo \$this->Form->input('{$field}', array('class' => 'form-control', 'placeholder' => '".Inflector::humanize($field)."'));?>\n";
 				echo "\t\t\t\t</div>\n";

@@ -1,8 +1,8 @@
-<div class="locations view">
+<div class="images view">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h3><?php echo __('Location'); ?></h3>
+				<h3><?php echo __('Image'); ?></h3>
 			</div>
 		</div>
 	</div>
@@ -15,28 +15,35 @@
 				<tr>
 		<th><?php echo __('Id'); ?></th>
 		<td>
-			<?php echo h($location['Location']['id']); ?>
+			<?php echo h($image['Image']['id']); ?>
 			&nbsp;
 		</td>
 </tr>
 <tr>
-		<th><?php echo __('Latitude'); ?></th>
+		<th><?php echo __('Name'); ?></th>
 		<td>
-			<?php echo h($location['Location']['latitude']); ?>
+			<?php echo h($image['Image']['name']); ?>
 			&nbsp;
 		</td>
 </tr>
 <tr>
-		<th><?php echo __('Longitude'); ?></th>
+		<th><?php echo __('Asset File'); ?></th>
 		<td>
-			<?php echo h($location['Location']['longitude']); ?>
+			<?php echo h($image['Image']['asset_file']); ?>
+			&nbsp;
+		</td>
+</tr>
+<tr>
+		<th><?php echo __('Modified'); ?></th>
+		<td>
+			<?php echo h($image['Image']['modified']); ?>
 			&nbsp;
 		</td>
 </tr>
 <tr>
 		<th><?php echo __('Created'); ?></th>
 		<td>
-			<?php echo h($location['Location']['created']); ?>
+			<?php echo h($image['Image']['created']); ?>
 			&nbsp;
 		</td>
 </tr>

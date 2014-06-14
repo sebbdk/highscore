@@ -1,0 +1,20 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "../css/bootstrap.css";
+@import "../css/justified-nav.css";
+@import "_animations.scss";
+@import "_elements.scss";
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 60px;
+	height: 100%;
+}
+

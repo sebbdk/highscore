@@ -59,7 +59,11 @@
 						}
 					}
 					if ($isKey !== true) {
-						echo "\t\t\t\t\t\t<td><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";
+						if($field === 'asset_file') {
+							echo "\t\t\t\t\t\t<td><?php echo \$this->Html->link( h(\${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank'] ); ?>&nbsp;</td>\n";
+						} else {
+							echo "\t\t\t\t\t\t<td><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";
+						}
 					}
 				}
 

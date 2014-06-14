@@ -27,12 +27,17 @@
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('bootstrap');
-		echo $this->Html->css('justified-nav');
-		echo $this->Html->css('backend');
+		echo $this->Html->css('screen');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
+
+		echo $this->Html->script([
+			'//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+			'dropdown',
+			'backend'
+		]);
+
 		echo $this->fetch('script');
 	?>
 
@@ -67,15 +72,14 @@
 
 		<?= $this->Session->flash(); ?>
 
-		<?= $this->fetch('content'); ?>
-
-		<?= $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'); ?>
-		<?= $this->Html->script('dropdown'); ?>
-		<?= $this->Html->script('backend'); ?>
-
-	    <div class="jumbotron">
-			<?php //echo $this->element('sql_dump'); ?>
-		</div>			
+		<?= $this->fetch('content'); ?>		
 	</div>
+
+    <div class="sticky-footer">
+    	<div class="container">
+    		Cakebox was made by sebb.dk
+    	</div>
+		<?php //echo $this->element('sql_dump'); ?>
+	</div>	
 </body>
 </html>
