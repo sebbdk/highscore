@@ -24,6 +24,9 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>Backend</title>
+
+	<meta id="Viewport" name="viewport" width="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -35,7 +38,8 @@
 		echo $this->Html->script([
 			'//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
 			'dropdown',
-			'backend'
+			'backend',
+			'vendor/bootstrap.min'
 		]);
 
 		echo $this->fetch('script');
@@ -50,25 +54,7 @@
 </head>
 <body>
 	<div class="container load">	
-
-		<?php if(AuthComponent::user()) : ?>
-			<div class="masthead">
-				<h3 class="text-muted">Admin section</h3>
-				<ul class="nav nav-justified">
-					<?php foreach($menuItems as $menuItem) : ?>
-						<?php
-							$isActive = $this->params['controller'] == $menuItem['url']['controller'] && 
-										$this->action == $menuItem['url']['action'];
-						?>
-						<li <?= $isActive ? 'class="active"':''; ?>>
-							<?= $this->Html->link($menuItem['name'], $menuItem['url']); ?>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-
-			<br />		
-		<?php endif; ?>
+		<?= $this->element('menu'); ?>
 
 		<?= $this->Session->flash(); ?>
 

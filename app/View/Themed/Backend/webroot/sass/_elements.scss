@@ -1,3 +1,25 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 60px;
+	height: 100%;
+	padding-top: 50px;
+}
+
+.pagination {
+	display: block;
+	width: 100%;
+	text-align: center;
+	height: 29px;
+
+	> li {
+		display: inline-block;
+	}
+}
+
 .sticky-footer {
 	position: absolute;
 	bottom: 0px;
@@ -9,4 +31,35 @@
 	background-color: #f5f5f5;
 	color: #999;
 	line-height: 60px;
+}
+
+td.actions {
+	text-align: right;
+}
+
+button[type=button] {
+	outline: none;
+}
+
+@media screen and (max-width: 768px) {
+	.page-header {
+		position: fixed;
+		top: 0px;
+		left: 15px;
+		margin: 0;
+		padding: 0;
+		z-index: 2000;
+		border: 0;
+
+		h3 {
+			margin: 0;
+			line-height: 50px;
+			text-decoration: none;
+			color: #999999;
+		}
+	}
+
+	body {
+		padding-top: 80px;
+	}
 }
