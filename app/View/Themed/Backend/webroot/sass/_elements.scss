@@ -6,7 +6,7 @@ html {
 body {
 	margin-bottom: 60px;
 	height: 100%;
-	padding-top: 50px;
+	padding-top: 80px;
 }
 
 .pagination {
@@ -18,6 +18,10 @@ body {
 	> li {
 		display: inline-block;
 	}
+}
+
+.navbar-inverse .navbar-collapse {
+	padding: 0;
 }
 
 .sticky-footer {
@@ -35,6 +39,7 @@ body {
 
 td.actions {
 	text-align: right;
+	min-width: 145px;
 }
 
 button[type=button] {
@@ -59,7 +64,7 @@ button[type=button] {
 		}
 	}
 
-	body {
-		padding-top: 80px;
+	.navbar-inverse .navbar-collapse {
+		padding: 0px 15px;
 	}
 }
