@@ -58,9 +58,9 @@
 					}
 					if ($isKey !== true) {
 						if($field === 'asset_file') {
-							echo "\t\t\t\t\t\t<td><?php echo \$this->Html->link( h(\${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank'] ); ?>&nbsp;</td>\n";
+							echo "\t\t\t\t\t\t<td><div class='limiter'><?php echo \$this->Html->link( h(\${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank'] ); ?>&nbsp;</div></td>\n";								
 						} else {
-							echo "\t\t\t\t\t\t<td><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";
+							echo "\t\t\t\t\t\t<td><div class='limiter'><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;<div></td>\n";
 						}
 					}
 				}

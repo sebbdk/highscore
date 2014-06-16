@@ -42,6 +42,10 @@ td.actions {
 	min-width: 145px;
 }
 
+td {
+	text-overflow: ellipsis;
+}
+
 button[type=button] {
 	outline: none;
 }
@@ -66,5 +70,13 @@ button[type=button] {
 
 	.navbar-inverse .navbar-collapse {
 		padding: 0px 15px;
+	}
+
+	td .limiter {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 70px;
+		line-height: 20px;
+		white-space: nowrap;
 	}
 }

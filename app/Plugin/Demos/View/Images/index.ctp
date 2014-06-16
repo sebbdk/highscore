@@ -23,9 +23,9 @@
 				<tbody>
 				<?php foreach ($images as $image): ?>
 					<tr>
-						<td><?php echo h($image['Image']['name']); ?>&nbsp;</td>
-						<td><?php echo $this->Html->link( h($image['Image']['asset_file']),  '/files/uploads/' . $image['Image']['asset_file'], ['target' => '_blank'] ); ?>&nbsp;</td>
-						<td><?php echo h($image['Image']['modified']); ?>&nbsp;</td>
+						<td><div class='limiter'><?php echo h($image['Image']['name']); ?>&nbsp;<div></td>
+						<td><div class='limiter'><?php echo $this->Html->link( h($image['Image']['asset_file']),  '/files/uploads/' . $image['Image']['asset_file'], ['target' => '_blank'] ); ?>&nbsp;</div></td>
+						<td><div class='limiter'><?php echo h($image['Image']['modified']); ?>&nbsp;<div></td>
 						<td class="actions">
 							<?php echo $this->Html->link('<span class="glyphicon glyphicon-search"></span>', array('action' => 'view', $image['Image']['id']), array('class' => 'btn btn-default','escape' => false)); ?>
 							<?php echo $this->Html->link('<span class="glyphicon glyphicon-edit"></span>', array('action' => 'edit', $image['Image']['id']), array('class' => 'btn btn-default', 'escape' => false)); ?>
