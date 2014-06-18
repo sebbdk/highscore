@@ -37,9 +37,30 @@ body {
 	line-height: 60px;
 }
 
+.page-header {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 0;
+
+	h3 {
+		margin-top: 0px;
+	}
+}
+
 td.actions {
 	text-align: right;
-	min-width: 145px;
+
+	.ellipse {
+		width: 128px;
+		float: right;
+
+		&:before {
+			@extend .btn;
+			@extend .btn-default;
+			content: "\2026 ";
+			display: none;
+		}
+	}
 }
 
 td {
@@ -51,6 +72,51 @@ button[type=button] {
 }
 
 @media screen and (max-width: 768px) {
+	td.actions {
+		position: relative;
+		height: 47px;
+		padding-left: 20px !important;
+
+		.ellipse {
+			position: absolute;
+			right: 0px;
+			top: 0px;
+
+			width: 45px;
+			height: 47px;
+			overflow: hidden;
+			line-height: 47px;
+			float: right;
+
+			.btn {
+				box-shadow: 0 0 10px black;
+				position: relative;
+				top: -2px;
+			}
+
+			&:before {
+				display: inline;
+				padding-top: 3px;
+				padding-bottom: 9px;
+				float: right;
+				position: relative;
+				top: 7px;
+				margin-bottom: 10px;
+				margin-right: 4px;
+				margin-left: 4px;
+			}
+
+			&.active {
+				width: 282px;
+
+				&:before {
+					display: inline;
+					
+				}
+			}
+		}
+	}
+
 	.page-header {
 		position: fixed;
 		top: 0px;

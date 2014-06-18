@@ -1,7 +1,11 @@
 (function() {
 
+	$(document).on('click', '.ellipse', function() {
+		$(this).toggleClass('active');
+	});
+
 	$(document).ready(function() {
-		adjustToFit()
+		adjustToFit();
 	});
 
 	$(window).on('beforeunload', function() {

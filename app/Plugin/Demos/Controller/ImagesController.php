@@ -8,11 +8,8 @@ App::uses('AppController', 'Controller');
  */
 class ImagesController extends AppController {
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator');
+	public $paginate = [
+		'limit' => 200
+	];
 
 }
