@@ -3,7 +3,9 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h3><?php echo __('Images'); ?></h3>
+				<h3>
+					<?php echo __('Images'); ?> 
+					<?php echo $this->Html->link('(Add new)', array('action' => 'add')); ?>				</h3>
 			</div>
 		</div><!-- end col md 12 -->
 	</div><!-- end row -->
@@ -24,14 +26,25 @@
 				<?php foreach ($images as $image): ?>
 					<tr>
 						<td><div class='limiter'><?php echo h($image['Image']['name']); ?>&nbsp;<div></td>
-						<td><div class='limiter'><?php echo $this->Html->link( h($image['Image']['asset_file']),  '/files/uploads/' . $image['Image']['asset_file'], ['target' => '_blank'] ); ?>&nbsp;</div></td>
+							<td>
+								<div class='limiter'>
+									<?php 
+										$arr = explode('.', $image['Image']['asset_file']);
+										$ext = array_pop($arr);
+										if(in_array($ext, ['png', 'gif', 'jpg', 'jpeg'])) {
+											echo $this->Html->link( $this->Html->image('/files/uploads/' . $image['Image']['asset_file']),  '/files/uploads/' . $image['Image']['asset_file'], ['target' => '_blank', 'escape' => false] , []); 
+										} else {
+											echo $this->Html->link( h($image['Image']['asset_file']),  '/files/uploads/' . $image['Image']['asset_file'], ['target' => '_blank'] ); 
+										}
+									?>
+									&nbsp;
+								</div>
+							</td>
 						<td><div class='limiter'><?php echo h($image['Image']['modified']); ?>&nbsp;<div></td>
 						<td class="actions">
-							<div onclick="" class="ellipse">
-								<?php echo $this->Html->link('<span class="glyphicon glyphicon-search"></span>', array('action' => 'view', $image['Image']['id']), array('class' => 'btn btn-default','escape' => false)); ?>
-								<?php echo $this->Html->link('<span class="glyphicon glyphicon-edit"></span>', array('action' => 'edit', $image['Image']['id']), array('class' => 'btn btn-default', 'escape' => false)); ?>
-								<?php echo $this->Form->postLink('<span class="glyphicon glyphicon-remove"></span>', array('action' => 'delete', $image['Image']['id']), array('class' => 'btn btn-default', 'escape' => false), __('Are you sure you want to delete # %s?', $image['Image']['id'])); ?>
-							</div>
+							<?php echo $this->Html->link('<span class="glyphicon glyphicon-search"></span>', array('action' => 'view', $image['Image']['id']), array('class' => 'btn btn-default','escape' => false)); ?>
+							<?php echo $this->Html->link('<span class="glyphicon glyphicon-edit"></span>', array('action' => 'edit', $image['Image']['id']), array('class' => 'btn btn-default', 'escape' => false)); ?>
+							<?php echo $this->Form->postLink('<span class="glyphicon glyphicon-remove"></span>', array('action' => 'delete', $image['Image']['id']), array('class' => 'btn btn-default', 'escape' => false), __('Are you sure you want to delete # %s?', $image['Image']['id'])); ?>
 						</td>
 					</tr>
 				<?php endforeach; ?>

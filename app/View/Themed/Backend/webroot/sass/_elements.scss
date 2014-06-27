@@ -47,6 +47,14 @@ body {
 	}
 }
 
+.table {
+	td {
+		img {
+			max-width: 150px;
+		}
+	}
+}
+
 td.actions {
 	text-align: right;
 

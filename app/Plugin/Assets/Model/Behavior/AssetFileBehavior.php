@@ -3,7 +3,7 @@
 * @Author: sebb
 * @Date:   2014-06-14 03:38:51
 * @Last Modified by:   sebb
-* @Last Modified time: 2014-06-14 21:07:37
+* @Last Modified time: 2014-06-28 00:17:15
 */
 App::uses('ModelBehavior', 'Model');
 App::uses('String', 'Utility');
@@ -16,11 +16,15 @@ class AssetFileBehavior extends ModelBehavior {
 	public $extensionMap = [
 		'image/jpeg' => 'jpg',
 		'image/png' => 'png',
-		'image/gif' => 'gif'
+		'image/gif' => 'gif',
+		'text/plain' => 'txt'
 	];
 
 	public function __construct() {
 		$this->assetFolder = WWW_ROOT.'files/uploads';
+		if(!file_exists($this->assetFolder)) {
+			mkdir($this->assetFolder);
+		}
 	}
 
 	public function beforeSave(Model $model, $options = []) {
@@ -39,7 +43,7 @@ class AssetFileBehavior extends ModelBehavior {
 					file_put_contents($this->assetFolder . DS . $name, $data);
 					$model->data[$model->alias]['asset_file'] = $name;
 				} else {
-					throw new exception('Unknow mime type for asset file, please add the mime type to the extension map');
+					throw new exception('Unknow mime type (' . $m . ') for asset file, please add the mime type to the extension map');
 				}
 			}
 		}

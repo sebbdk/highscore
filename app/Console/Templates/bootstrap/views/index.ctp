@@ -22,7 +22,10 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h3><?php echo "<?php echo __('{$pluralHumanName}'); ?>"; ?></h3>
+				<h3>
+					<?php echo "<?php echo __('{$pluralHumanName}'); ?>"; ?> 
+					<?php echo "<?php echo \$this->Html->link('(Add new)', array('action' => 'add')); ?>"; ?>
+				</h3>
 			</div>
 		</div><!-- end col md 12 -->
 	</div><!-- end row -->
@@ -58,7 +61,20 @@
 					}
 					if ($isKey !== true) {
 						if($field === 'asset_file') {
-							echo "\t\t\t\t\t\t<td><div class='limiter'><?php echo \$this->Html->link( h(\${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank'] ); ?>&nbsp;</div></td>\n";								
+							echo "\t\t\t\t\t\t\t<td>
+								<div class='limiter'>
+									<?php 
+										\$arr = explode('.', \$image['Image']['asset_file']);
+										\$ext = array_pop(\$arr);
+										if(in_array(\$ext, ['png', 'gif', 'jpg', 'jpeg'])) {
+											echo \$this->Html->link( \$this->Html->image('/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank', 'escape' => false] , []); 
+										} else {
+											echo \$this->Html->link( h(\${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank'] ); 
+										}
+									?>
+									&nbsp;
+								</div>
+							</td>\n";								
 						} else {
 							echo "\t\t\t\t\t\t<td><div class='limiter'><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;<div></td>\n";
 						}
