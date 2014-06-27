@@ -29,14 +29,15 @@
 
 	<?php
 		echo $this->Html->meta('icon');
+		echo $this->fetch('meta');
 
 		echo $this->Html->css('screen');
-
-		echo $this->fetch('meta');
+		echo $this->Html->css('/js/vendor/fancybox/source/jquery.fancybox');
 		echo $this->fetch('css');
 
 		echo $this->Html->script([
-			'//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+			'vendor/jquery/dist/jquery.min',
+			'vendor/fancybox/source/jquery.fancybox',
 			'dropdown',
 			'backend',
 			'vendor/bootstrap.min'

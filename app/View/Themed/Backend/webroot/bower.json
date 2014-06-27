@@ -1,0 +1,8 @@
+{
+	"name":"unknown application",
+	"version":"0.0.1",
+	"dependencies": {
+		"jquery":null,
+		"fancybox":null
+	}
+}

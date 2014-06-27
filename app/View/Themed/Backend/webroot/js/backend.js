@@ -6,12 +6,17 @@
 
 	$(document).ready(function() {
 		adjustToFit();
+		prepareFancyBox();
 	});
 
 	$(window).on('beforeunload', function() {
  		$('.container').removeClass('load');
  		$('.container').addClass('unload');
 	});
+
+	function prepareFancyBox() {
+		$('td a').fancybox();
+	}
 
 	function adjustToFit() {
 		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {

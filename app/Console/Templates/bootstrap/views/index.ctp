@@ -67,7 +67,7 @@
 										\$arr = explode('.', \$image['Image']['asset_file']);
 										\$ext = array_pop(\$arr);
 										if(in_array(\$ext, ['png', 'gif', 'jpg', 'jpeg'])) {
-											echo \$this->Html->link( \$this->Html->image('/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank', 'escape' => false] , []); 
+											echo \$this->Html->link( \$this->Html->image('/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank', 'escape' => false, 'data-fancybox-group' => 'le-group'] , []); 
 										} else {
 											echo \$this->Html->link( h(\${$singularVar}['{$modelClass}']['{$field}']),  '/files/uploads/' . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank'] ); 
 										}
