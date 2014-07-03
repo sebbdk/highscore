@@ -125,6 +125,14 @@ button[type=button] {
 		}
 	}
 
+	.table {
+		td {
+			img {
+				max-width: 100%;
+			}
+		}
+	}
+
 	.page-header {
 		position: fixed;
 		top: 0px;

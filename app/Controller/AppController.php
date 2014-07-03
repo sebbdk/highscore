@@ -15,7 +15,9 @@ abstract class AppController extends Controller {
 		'Crud.Crud' => array(
 			'actions' => array(
 				'view'  => 'Crud.View',
-				'add'  => 'Crud.add',
+				'add'  => [
+						'saveMethod' => 'saveAll'
+				],
 				'delete'  => 'Crud.delete',
 				'edit'  => 'Crud.edit',
 				'index'  => 'Crud.index'

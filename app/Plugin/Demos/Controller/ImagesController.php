@@ -12,4 +12,10 @@ class ImagesController extends AppController {
 		'limit' => 200
 	];
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+
+		$this->header('Access-Control-Allow-Origin: *');
+	}
+
 }

@@ -15,7 +15,7 @@
 	});
 
 	function prepareFancyBox() {
-		$('td a').fancybox();
+		$('td a.fancy').fancybox();
 	}
 
 	function adjustToFit() {
