@@ -18,6 +18,8 @@
 					<tr>
 						<th><?php echo $this->Paginator->sort('name'); ?></th>
 						<th><?php echo $this->Paginator->sort('asset_file'); ?></th>
+						<th><?php echo $this->Paginator->sort('origin'); ?></th>
+						<th><?php echo $this->Paginator->sort('sort'); ?></th>
 						<th><?php echo $this->Paginator->sort('modified'); ?></th>
 						<th class="actions"></th>
 					</tr>
@@ -31,8 +33,8 @@
 									<?php 
 										$arr = explode('.', $image['Image']['asset_file']);
 										$ext = array_pop($arr);
+										$prepend = strrpos($image['Image']['asset_file'], '://') === false ? '/files/uploads/':''; 
 										if(in_array($ext, ['png', 'gif', 'jpg', 'jpeg'])) {
-											$prepend = strrpos($image['Image']['asset_file'], '://') === false ? '/files/uploads/':''; 
 											echo $this->Html->link( $this->Html->image($prepend . $image['Image']['asset_file']),  $prepend . $image['Image']['asset_file'], ['target' => '_blank', 'escape' => false, 'data-fancybox-group' => 'le-group', 'class' => 'fancy'] , []); 
 										} else {
 											echo $this->Html->link( h($image['Image']['asset_file']),  $prepend . $image['Image']['asset_file'], ['target' => '_blank'] ); 
@@ -41,6 +43,8 @@
 									&nbsp;
 								</div>
 							</td>
+						<td><div class='limiter'><?php echo h($image['Image']['origin']); ?>&nbsp;<div></td>
+						<td><div class='limiter'><?php echo h($image['Image']['sort']); ?>&nbsp;<div></td>
 						<td><div class='limiter'><?php echo h($image['Image']['modified']); ?>&nbsp;<div></td>
 						<td class="actions">
 							<?php echo $this->Html->link('<span class="glyphicon glyphicon-search"></span>', array('action' => 'view', $image['Image']['id']), array('class' => 'btn btn-default','escape' => false)); ?>

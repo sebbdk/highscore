@@ -1,21 +1,17 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Images Controller
+ * UrlScores Controller
  *
- * @property Image $Image
- * @property PaginatorComponent $Paginator
  */
-class ImagesController extends AppController {
+class UrlScoresController extends AppController {
 
 	public $paginate = [
-		'limit' => 200,
-		'order' => 'sort desc'
+		'order' => 'created desc'
 	];
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-
 		$this->header('Access-Control-Allow-Origin: *');
 	}
 

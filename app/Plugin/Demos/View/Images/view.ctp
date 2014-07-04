@@ -34,6 +34,20 @@
 		</td>
 </tr>
 <tr>
+		<th><?php echo __('Origin'); ?></th>
+		<td>
+			<?php echo h($image['Image']['origin']); ?>
+			&nbsp;
+		</td>
+</tr>
+<tr>
+		<th><?php echo __('Sort'); ?></th>
+		<td>
+			<?php echo h($image['Image']['sort']); ?>
+			&nbsp;
+		</td>
+</tr>
+<tr>
 		<th><?php echo __('Modified'); ?></th>
 		<td>
 			<?php echo h($image['Image']['modified']); ?>

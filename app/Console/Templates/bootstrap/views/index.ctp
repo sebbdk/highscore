@@ -64,9 +64,9 @@
 							echo "\t\t\t\t\t\t\t<td>
 								<div class='limiter'>
 									<?php 
-										\$arr = explode('.', \$image['Image']['asset_file']);
+										\$arr = explode('.', \${$singularVar}['{$modelClass}']['asset_file']);
 										\$ext = array_pop(\$arr);
-										\$prepend = strrpos(\$image['Image']['asset_file'], '://') === false ? '/files/uploads/':''; 
+										\$prepend = strrpos(\${$singularVar}['{$modelClass}']['asset_file'], '://') === false ? '/files/uploads/':''; 
 										if(in_array(\$ext, ['png', 'gif', 'jpg', 'jpeg'])) {
 											echo \$this->Html->link( \$this->Html->image(\$prepend . \${$singularVar}['{$modelClass}']['{$field}']),  \$prepend . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank', 'escape' => false, 'data-fancybox-group' => 'le-group', 'class' => 'fancy'] , []); 
 										} else {

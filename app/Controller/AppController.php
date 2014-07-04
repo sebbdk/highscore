@@ -18,7 +18,9 @@ abstract class AppController extends Controller {
 				'add'  => [
 						'saveMethod' => 'saveAll'
 				],
-				'delete'  => 'Crud.delete',
+				'delete'  => [
+					'validateId' => false
+				],
 				'edit'  => 'Crud.edit',
 				'index'  => 'Crud.index'
 			),
