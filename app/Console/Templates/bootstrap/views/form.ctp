@@ -30,7 +30,6 @@
 
 
 	<div class="row">
-
 		<div class="col-md-12">
 <?php 		echo "\t\t\t<?php echo \$this->Form->create('{$modelClass}', array('role' => 'form')); ?>\n\n"; ?>
 <?php
@@ -38,7 +37,6 @@
 			if (strpos($action, 'add') !== false && $field == $primaryKey) {
 				continue;
 			} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
-
 				if($field == 'asset_file') {
 					echo "\t\t\t\t<div class=\"form-group\">\n";
 					echo "\t\t\t\t\t<?php echo \$this->element('Assets.asset_file_uploader', ['field' => '{$field}']);?>\n";	

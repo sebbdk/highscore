@@ -47,8 +47,8 @@
 			echo "\t<?php foreach (\${$pluralVar} as \${$singularVar}): ?>\n";
 			echo "\t\t\t\t\t<tr>\n";
 				foreach ($fields as $field) {
+
 					if(in_array($field, array('created', 'id'))) {continue;}
-					
 					$isKey = false;
 					if (!empty($associations['belongsTo'])) {
 						foreach ($associations['belongsTo'] as $alias => $details) {

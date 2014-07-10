@@ -2,7 +2,7 @@
 
 //admin menu configuration
 Configure::write('adminMenu.users', array(
-	'name' => 'users',
+	'name' => 'Users',
 	'url' => array(
 		'plugin' => 'users',
 		'controller' => 'users',
@@ -17,6 +17,7 @@ Configure::write('adminMenu.logout', array(
 		'controller' => 'users',
 		'action' => 'admin_logout',
 	),
+	'class' => 'logout',
 	'sort' => 100
 ));		
 

@@ -20,7 +20,9 @@
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
+
 		<div class="navbar-header">
+			<a href="<?php echo Router::url('/'); ?>"><h3>Backend</h3></a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>

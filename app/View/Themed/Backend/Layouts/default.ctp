@@ -26,13 +26,13 @@
 	<title>Backend</title>
 
 	<meta id="Viewport" name="viewport" width="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->fetch('meta');
 
 		echo $this->Html->css('screen');
 		echo $this->Html->css('/js/vendor/fancybox/source/jquery.fancybox');
+		echo $this->Html->css('http://fonts.googleapis.com/css?family=Montserrat');
 		echo $this->fetch('css');
 
 		echo $this->Html->script([
@@ -54,9 +54,9 @@
 	
 </head>
 <body>
-	<div class="container load">	
-		<?= $this->element('menu'); ?>
+	<?= $this->element('menu'); ?>
 
+	<div class="container load">	
 		<?= $this->Session->flash(); ?>
 
 		<?= $this->fetch('content'); ?>		

@@ -57,6 +57,7 @@ body {
 
 td.actions {
 	text-align: right;
+	min-width: 155px !important;
 
 	.ellipse {
 		width: 128px;
@@ -77,6 +78,10 @@ td {
 
 button[type=button] {
 	outline: none;
+}
+
+.row .col-md-12 {
+	padding: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -133,23 +138,6 @@ button[type=button] {
 		}
 	}
 
-	.page-header {
-		position: fixed;
-		top: 0px;
-		left: 15px;
-		margin: 0;
-		padding: 0;
-		z-index: 2000;
-		border: 0;
-
-		h3 {
-			margin: 0;
-			line-height: 50px;
-			text-decoration: none;
-			color: #999999;
-		}
-	}
-
 	.navbar-inverse .navbar-collapse {
 		padding: 0px 15px;
 	}
@@ -161,4 +149,39 @@ button[type=button] {
 		line-height: 20px;
 		white-space: nowrap;
 	}
+
+	.navbar-header h3 {
+		padding: 0 15px;
+	}
+
+	.row {
+		margin: 0;
+	}
+}
+
+.navbar-header h3 {
+	margin: 0;
+	line-height: 50px;
+	margin: 0;
+	color: #CCC;
+	padding-right: 15px;
+	display: inline-block;
+}
+
+.navbar-nav>li>a {
+	padding-top: 17px;
+}
+
+.navbar .container, .navbar-nav, .navbar-header {
+	padding: 0;
+	margin: auto !important;
+}
+
+.navbar-inverse .navbar-nav>.active>a {
+	border-bottom: 5px solid #428bca;
+	padding-bottom: 10px;
+}
+
+.navbar-fixed-top {
+	border: 0;
 }
