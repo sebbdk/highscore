@@ -126,16 +126,18 @@ echo "\t<?php foreach (\${$singularVar}['{$alias}'] as \${$otherSingularVar}): ?
 			foreach ($details['fields'] as $field) {
 					if(in_array($field, array('created', 'id'))) {continue;}
 					$isKey = false;
+					$tdClass = Inflector::camelize($otherSingularVar . '_' .  $field) . 'Field';
+
 					if (!empty($associations['belongsTo'])) {
 						foreach ($associations['belongsTo'] as $balias => $bdetails) {
-							if ($field === $details['foreignKey']) {
+							if ($field === $bdetails['foreignKey']) {
 								$isKey = true;
-								echo "\t\t\t\t\t\t\t\t<td>\n\t\t\t<?php echo \$this->Html->link(\${$otherSingularVar}['{$balias}']['{$details['displayField']}'], array('controller' => '{$bdetails['controller']}', 'action' => 'view', \${$otherSingularVar}['{$balias}']['{$details['primaryKey']}'])); ?>\n\t\t</td>\n";
+								echo "\t\t\t\t\t\t\t\t<td class='{$tdClass}'>\n\t\t\t<?php echo \$this->Html->link(\${$singularVar}['{$balias}']['{$bdetails['displayField']}'], array('controller' => '{$bdetails['controller']}', 'action' => 'view', \${$singularVar}['{$balias}']['{$bdetails['primaryKey']}'])); ?>\n\t\t</td>\n";
 								break;
 							}
 						}
 					}
-					$tdClass = Inflector::camelize($otherSingularVar . '_' .  $field) . 'Field';
+					
 					if ($isKey !== true) {
 						if( strpos($field, 'asset_') !== false ) {
 							echo "\t\t\t\t\t\t\t<td class='{$tdClass}'>
