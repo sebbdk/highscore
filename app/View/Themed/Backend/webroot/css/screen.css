@@ -8219,4 +8219,5 @@ video {
 /* line 198, ../sass/_elements.scss */
 .related {
   margin-bottom: 40px;
+  padding-bottom: 20px;
 }
