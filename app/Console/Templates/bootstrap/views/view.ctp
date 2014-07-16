@@ -124,15 +124,13 @@ foreach ($relations as $alias => $details):
 echo "\t<?php foreach (\${$singularVar}['{$alias}'] as \${$otherSingularVar}): ?>\n";
 		echo "\t\t<tr>\n";
 			foreach ($details['fields'] as $field) {
-				/*echo "\t\t\t<td><?php echo \${$otherSingularVar}['{$field}']; ?></td>\n";				*/
-
 					if(in_array($field, array('created', 'id'))) {continue;}
 					$isKey = false;
 					if (!empty($associations['belongsTo'])) {
-						foreach ($associations['belongsTo'] as $alias => $details) {
+						foreach ($associations['belongsTo'] as $balias => $bdetails) {
 							if ($field === $details['foreignKey']) {
 								$isKey = true;
-								echo "\t\t\t\t\t\t\t\t<td>\n\t\t\t<?php echo \$this->Html->link(\${$otherSingularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$alias}']['{$details['primaryKey']}'])); ?>\n\t\t</td>\n";
+								echo "\t\t\t\t\t\t\t\t<td>\n\t\t\t<?php echo \$this->Html->link(\${$otherSingularVar}['{$balias}']['{$details['displayField']}'], array('controller' => '{$bdetails['controller']}', 'action' => 'view', \${$otherSingularVar}['{$balias}']['{$details['primaryKey']}'])); ?>\n\t\t</td>\n";
 								break;
 							}
 						}
