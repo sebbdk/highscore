@@ -31,15 +31,22 @@
 	</div><!-- end row -->
 
 	<div class="row">
+		<?php
+			$tableClass = Inflector::camelize($singularVar); 
 
+		?>
 		<div>
-			<table cellpadding="0" cellspacing="0" class="table table-striped">
+			<table cellpadding="0" cellspacing="0" class="table table-striped <?php echo $tableClass; ?>Table">
 				<thead>
 					<tr>
-			<?php foreach ($fields as $field):  if(in_array($field, array('created', 'id'))) {continue;} ?>
-			<th><?php echo "<?php echo \$this->Paginator->sort('{$field}'); ?>"; ?></th>
-			<?php endforeach; ?>
-			<th class="actions"></th>
+					<?php
+						foreach ($fields as $field):
+					  	if(in_array($field, array('created', 'id'))) {continue;} 
+					  	$tdClass = Inflector::camelize($singularVar . '_' .  $field ) . 'Field';
+					?>
+					<th class="<?php echo $tdClass; ?>"><?php echo "<?php echo \$this->Paginator->sort('{$field}'); ?>"; ?></th>
+					<?php endforeach; ?>
+					<th class="actions"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -47,26 +54,27 @@
 			echo "\t<?php foreach (\${$pluralVar} as \${$singularVar}): ?>\n";
 			echo "\t\t\t\t\t<tr>\n";
 				foreach ($fields as $field) {
-
+					$tdClass = Inflector::camelize($singularVar . '_' .  $field ) . 'Field';
+					
 					if(in_array($field, array('created', 'id'))) {continue;}
 					$isKey = false;
 					if (!empty($associations['belongsTo'])) {
 						foreach ($associations['belongsTo'] as $alias => $details) {
 							if ($field === $details['foreignKey']) {
 								$isKey = true;
-								echo "\t\t\t\t\t\t\t\t<td>\n\t\t\t<?php echo \$this->Html->link(\${$singularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}['{$alias}']['{$details['primaryKey']}'])); ?>\n\t\t</td>\n";
+								echo "\t\t\t\t\t\t\t\t<td class='{$tdClass}'>\n\t\t\t<?php echo \$this->Html->link(\${$singularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}['{$alias}']['{$details['primaryKey']}'])); ?>\n\t\t</td>\n";
 								break;
 							}
 						}
 					}
 					if ($isKey !== true) {
-						if($field === 'asset_file') {
-							echo "\t\t\t\t\t\t\t<td>
+						if( strpos($field, 'asset_') !== false ) {
+							echo "\t\t\t\t\t\t\t<td class='{$tdClass}'>
 								<div class='limiter'>
 									<?php 
-										\$arr = explode('.', \${$singularVar}['{$modelClass}']['asset_file']);
+										\$arr = explode('.', \${$singularVar}['{$modelClass}']['{$field}']);
 										\$ext = array_pop(\$arr);
-										\$prepend = strrpos(\${$singularVar}['{$modelClass}']['asset_file'], '://') === false ? '/files/uploads/':''; 
+										\$prepend = strrpos(\${$singularVar}['{$modelClass}']['{$field}'], '://') === false ? '/files/uploads/':''; 
 										if(in_array(\$ext, ['png', 'gif', 'jpg', 'jpeg'])) {
 											echo \$this->Html->link( \$this->Html->image(\$prepend . \${$singularVar}['{$modelClass}']['{$field}']),  \$prepend . \${$singularVar}['{$modelClass}']['{$field}'], ['target' => '_blank', 'escape' => false, 'data-fancybox-group' => 'le-group', 'class' => 'fancy'] , []); 
 										} else {
@@ -77,7 +85,7 @@
 								</div>
 							</td>\n";								
 						} else {
-							echo "\t\t\t\t\t\t<td><div class='limiter'><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;<div></td>\n";
+							echo "\t\t\t\t\t\t<td class='{$tdClass}'><div class='limiter'><?php echo h(\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;<div></td>\n";
 						}
 					}
 				}

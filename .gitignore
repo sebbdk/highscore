@@ -9,6 +9,8 @@
 /tags
 .sass-cache
 app/webroot/files/
+app/View/Themed/Backend/webroot/css/backend-custom.css
+app/View/Themed/Backend/webroot/sass/backend-custom.scss
 
 # OS generated files #
 ######################

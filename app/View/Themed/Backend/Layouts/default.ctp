@@ -31,6 +31,7 @@
 		echo $this->fetch('meta');
 
 		echo $this->Html->css('screen');
+		echo $this->Html->css('backend-custom');
 		echo $this->Html->css('/js/vendor/fancybox/source/jquery.fancybox');
 		echo $this->Html->css('http://fonts.googleapis.com/css?family=Montserrat');
 		echo $this->fetch('css');

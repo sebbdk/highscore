@@ -6,16 +6,15 @@ App::uses('AppController', 'Controller');
  * @property Image $Image
  * @property PaginatorComponent $Paginator
  */
-class ImagesController extends AppController {
+class GalleriesController extends AppController {
 
 	public $paginate = [
-		'limit' => 200,
-		'order' => 'sort desc'
+		'limit' => 20,
+		'order' => 'created desc'
 	];
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-
 		$this->header('Access-Control-Allow-Origin: *');
 	}
 

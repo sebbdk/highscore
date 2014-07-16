@@ -7,6 +7,7 @@
 	$(document).ready(function() {
 		adjustToFit();
 		prepareFancyBox();
+		prepMovies();
 	});
 
 	$(window).on('beforeunload', function() {
@@ -16,6 +17,14 @@
 
 	function prepareFancyBox() {
 		$('td a.fancy').fancybox();
+	}
+
+	function prepMovies() {
+		$('a').each(function() {
+			if($(this).attr('href').indexOf('.mp4') !== -1) {
+				$(this).replaceWith('<video controls src="' + $(this).attr('href') + '"></video>')
+			}
+		});
 	}
 
 	function adjustToFit() {

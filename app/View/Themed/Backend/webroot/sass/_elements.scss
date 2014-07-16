@@ -4,7 +4,7 @@ html {
 }
 
 body {
-	margin-bottom: 60px;
+	margin-bottom: 80px;
 	height: 100%;
 	padding-top: 80px;
 }
@@ -12,7 +12,6 @@ body {
 .pagination {
 	display: block;
 	width: 100%;
-	text-align: center;
 	height: 29px;
 
 	> li {
@@ -49,7 +48,7 @@ body {
 
 .table {
 	td {
-		img {
+		img, video {
 			max-width: 150px;
 		}
 	}
@@ -58,6 +57,7 @@ body {
 td.actions {
 	text-align: right;
 	min-width: 155px !important;
+	text-align: center;
 
 	.ellipse {
 		width: 128px;
@@ -80,8 +80,9 @@ button[type=button] {
 	outline: none;
 }
 
-.row .col-md-12 {
+.row {
 	padding: 0;
+	margin: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -168,6 +169,10 @@ button[type=button] {
 	display: inline-block;
 }
 
+.navbar {
+	font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .navbar-nav>li>a {
 	padding-top: 17px;
 }
@@ -184,4 +189,8 @@ button[type=button] {
 
 .navbar-fixed-top {
 	border: 0;
+}
+
+video {
+	max-width: 400px;
 }

@@ -96,19 +96,24 @@ if (empty($associations['hasAndBelongsToMany'])) {
 }
 $relations = array_merge($associations['hasMany'], $associations['hasAndBelongsToMany']);
 foreach ($relations as $alias => $details):
+	$modelClass = $alias;
 	$otherSingularVar = Inflector::variable($alias);
 	$otherPluralHumanName = Inflector::humanize($details['controller']);
+	$tableClass = Inflector::camelize($otherSingularVar);
 	?>
 <div class="related row">
 	<div class="col-md-12">
 	<h3><?php echo "<?php echo __('Related " . $otherPluralHumanName . "'); ?>"; ?></h3>
 	<?php echo "<?php if (!empty(\${$singularVar}['{$alias}'])): ?>\n"; ?>
-	<table cellpadding = "0" cellspacing = "0" class="table table-striped">
+	<table cellpadding = "0" cellspacing = "0" class="table table-striped <?php echo $tableClass; ?>Table">
 	<thead>
 	<tr>
 <?php
-			foreach ($details['fields'] as $field) {
-				echo "\t\t<th><?php echo __('" . Inflector::humanize($field) . "'); ?></th>\n";
+			foreach ($details['fields'] as $field) { 
+				if(in_array($field, array('created', 'id'))) {continue;} 
+				$tdClass = Inflector::camelize($otherSingularVar . '_' .  $field ) . 'Field';
+
+				echo "\t\t<th class='$tdClass'><?php echo __('" . Inflector::humanize($field) . "'); ?></th>\n";
 			}
 ?>
 		<th class="actions"></th>
@@ -119,7 +124,40 @@ foreach ($relations as $alias => $details):
 echo "\t<?php foreach (\${$singularVar}['{$alias}'] as \${$otherSingularVar}): ?>\n";
 		echo "\t\t<tr>\n";
 			foreach ($details['fields'] as $field) {
-				echo "\t\t\t<td><?php echo \${$otherSingularVar}['{$field}']; ?></td>\n";
+				/*echo "\t\t\t<td><?php echo \${$otherSingularVar}['{$field}']; ?></td>\n";				*/
+
+					if(in_array($field, array('created', 'id'))) {continue;}
+					$isKey = false;
+					if (!empty($associations['belongsTo'])) {
+						foreach ($associations['belongsTo'] as $alias => $details) {
+							if ($field === $details['foreignKey']) {
+								$isKey = true;
+								echo "\t\t\t\t\t\t\t\t<td>\n\t\t\t<?php echo \$this->Html->link(\${$otherSingularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$otherSingularVar}['{$alias}']['{$details['primaryKey']}'])); ?>\n\t\t</td>\n";
+								break;
+							}
+						}
+					}
+					$tdClass = Inflector::camelize($otherSingularVar . '_' .  $field) . 'Field';
+					if ($isKey !== true) {
+						if( strpos($field, 'asset_') !== false ) {
+							echo "\t\t\t\t\t\t\t<td class='{$tdClass}'>
+								<div class='limiter'>
+									<?php 
+										\$arr = explode('.', \${$otherSingularVar}['{$field}']);
+										\$ext = array_pop(\$arr);
+										\$prepend = strrpos(\${$otherSingularVar}['{$field}'], '://') === false ? '/files/uploads/':''; 
+										if(in_array(\$ext, ['png', 'gif', 'jpg', 'jpeg'])) {
+											echo \$this->Html->link( \$this->Html->image(\$prepend . \${$otherSingularVar}['{$field}']),  \$prepend . \${$otherSingularVar}['{$field}'], ['target' => '_blank', 'escape' => false, 'data-fancybox-group' => 'le-group', 'class' => 'fancy'] , []); 
+										} else {
+											echo \$this->Html->link( h(\${$otherSingularVar}['{$field}']),  \$prepend . \${$otherSingularVar}['{$field}'], ['target' => '_blank'] ); 
+										}
+									?>
+								</div>
+							</td>\n";								
+						} else {
+							echo "\t\t\t\t\t\t<td class='{$tdClass}'><div class='limiter'><?php echo h(\${$otherSingularVar}['{$field}']); ?><div></td>\n";
+						}
+					}
 			}
 
 			echo "\t\t\t<td class=\"actions\">\n";
