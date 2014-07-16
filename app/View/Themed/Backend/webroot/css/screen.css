@@ -8215,3 +8215,8 @@ button[type=button] {
 video {
   max-width: 400px;
 }
+
+/* line 198, ../sass/_elements.scss */
+.related {
+  margin-bottom: 40px;
+}

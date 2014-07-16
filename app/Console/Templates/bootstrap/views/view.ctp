@@ -101,8 +101,8 @@ foreach ($relations as $alias => $details):
 	$otherPluralHumanName = Inflector::humanize($details['controller']);
 	$tableClass = Inflector::camelize($otherSingularVar);
 	?>
-<div class="related row">
-	<div class="col-md-12">
+<div class="related row well">
+	<div class="col-md-12 ">
 	<h3><?php echo "<?php echo __('Related " . $otherPluralHumanName . "'); ?>"; ?></h3>
 	<?php echo "<?php if (!empty(\${$singularVar}['{$alias}'])): ?>\n"; ?>
 	<table cellpadding = "0" cellspacing = "0" class="table table-striped <?php echo $tableClass; ?>Table">
