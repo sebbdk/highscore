@@ -1,10 +1,20 @@
 <?php
+/* 
+* @Author: sebb
+* @Date:   2014-06-23 03:22:19
+* @Last Modified by:   sebb
+* @Last Modified time: 2014-07-17 14:49:40
+*/
+App::uses('AppController', 'Controller');
+
 class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
 
 		$this->Auth->allow('admin_login');
+
+		$this->response->header('Access-Control-Allow-Origin: *');
 
 		if($this->action === 'admin_add') {
 			if($this->User->find('count') === 0 || $this->Auth->user()) {
