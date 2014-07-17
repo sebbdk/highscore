@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
 class UrlScoresController extends AppController {
 
 	public $paginate = [
-		'order' => 'created desc'
+		'order' => 'UrlScore.created desc'
 	];
 
 	public function beforeFilter() {

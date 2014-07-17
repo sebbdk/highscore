@@ -18,6 +18,7 @@
 										<th class="GalleryAssetPreviewField"><?php echo $this->Paginator->sort('asset_preview'); ?></th>
 										<th class="GalleryNameField"><?php echo $this->Paginator->sort('name'); ?></th>
 										<th class="GalleryOriginField"><?php echo $this->Paginator->sort('origin'); ?></th>
+										<th class="GalleryScoreField"><?php echo $this->Paginator->sort('score'); ?></th>
 										<th class="actions"></th>
 					</tr>
 				</thead>
@@ -41,6 +42,7 @@
 							</td>
 						<td class='GalleryNameField'><div class='limiter'><?php echo h($gallery['Gallery']['name']); ?>&nbsp;<div></td>
 						<td class='GalleryOriginField'><div class='limiter'><?php echo h($gallery['Gallery']['origin']); ?>&nbsp;<div></td>
+						<td class='GalleryScoreField'><div class='limiter'><?php echo h($gallery['Gallery']['score']); ?>&nbsp;<div></td>
 						<td class="actions">
 							<?php echo $this->Html->link('<span class="glyphicon glyphicon-search"></span>', array('action' => 'view', $gallery['Gallery']['id']), array('class' => 'btn btn-default','escape' => false)); ?>
 							<?php echo $this->Html->link('<span class="glyphicon glyphicon-edit"></span>', array('action' => 'edit', $gallery['Gallery']['id']), array('class' => 'btn btn-default', 'escape' => false)); ?>

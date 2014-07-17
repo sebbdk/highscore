@@ -21,7 +21,7 @@
 
 	function prepMovies() {
 		$('a').each(function() {
-			if($(this).attr('href').indexOf('.mp4') !== -1) {
+			if($(this).attr('href') && $(this).attr('href').indexOf('.mp4') !== -1) {
 				$(this).replaceWith('<video controls src="' + $(this).attr('href') + '"></video>')
 			}
 		});

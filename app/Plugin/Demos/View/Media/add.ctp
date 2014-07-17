@@ -30,6 +30,9 @@
 					<?php echo $this->Form->input('sort', array('class' => 'form-control', 'placeholder' => 'Sort'));?>
 				</div>
 				<div class="form-group">
+					<?php echo $this->Form->input('score', array('class' => 'form-control', 'placeholder' => 'Score'));?>
+				</div>
+				<div class="form-group">
 					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-default')); ?>
 				</div>
 

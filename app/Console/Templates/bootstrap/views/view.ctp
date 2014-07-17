@@ -97,6 +97,14 @@ if (empty($associations['hasAndBelongsToMany'])) {
 $relations = array_merge($associations['hasMany'], $associations['hasAndBelongsToMany']);
 foreach ($relations as $alias => $details):
 	$modelClass = $alias;
+	
+	App::uses($alias, Inflector::camelize($plugin) . '.Model');
+	$otherModel = new $alias();
+	$otherAssociations = [
+		'belongsTo' => $otherModel->belongsTo, 
+		'hasAndBelongsToMany' => $otherModel->hasAndBelongsToMany
+	];
+
 	$otherSingularVar = Inflector::variable($alias);
 	$otherPluralHumanName = Inflector::humanize($details['controller']);
 	$tableClass = Inflector::camelize($otherSingularVar);
@@ -128,11 +136,15 @@ echo "\t<?php foreach (\${$singularVar}['{$alias}'] as \${$otherSingularVar}): ?
 					$isKey = false;
 					$tdClass = Inflector::camelize($otherSingularVar . '_' .  $field) . 'Field';
 
-					if (!empty($associations['belongsTo'])) {
-						foreach ($associations['belongsTo'] as $balias => $bdetails) {
+					if (!empty($otherAssociations['belongsTo'])) {
+						foreach ($otherAssociations['belongsTo'] as $balias => $bdetails) {
 							if ($field === $bdetails['foreignKey']) {
 								$isKey = true;
-								echo "\t\t\t\t\t\t\t\t<td class='{$tdClass}'>\n\t\t\t<?php echo \$this->Html->link(\${$singularVar}['{$balias}']['{$bdetails['displayField']}'], array('controller' => '{$bdetails['controller']}', 'action' => 'view', \${$singularVar}['{$balias}']['{$bdetails['primaryKey']}'])); ?>\n\t\t</td>\n";
+								echo "\t\t\t\t\t\t\t\t<?php if(!empty(\${$otherSingularVar}['{$balias}'])) : ?>";
+								echo "\t\t\t\t\t\t\t\t\t<td class='{$tdClass}'>\n\t\t\t<?php echo \$this->Html->link(\${$otherSingularVar}['{$balias}']['{$otherModel->displayField}'], array('controller' => '{$otherPluralHumanName}', 'action' => 'view', \${$otherSingularVar}['{$balias}']['{$otherModel->primaryKey}'])); ?>\n\t\t</td>\n";
+								echo "\t\t\t\t\t\t\t\t<?php else: ?>";
+								echo "\t\t\t\t\t\t\t\t\t<td class='{$tdClass}'></td>";
+								echo "\t\t\t\t\t\t\t\t<?php endif; ?>";
 								break;
 							}
 						}

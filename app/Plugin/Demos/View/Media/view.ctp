@@ -55,6 +55,13 @@
 		</td>
 </tr>
 <tr>
+		<th><?php echo __('Score'); ?></th>
+		<td>
+			<?php echo h($media['Media']['score']); ?>
+			&nbsp;
+		</td>
+</tr>
+<tr>
 		<th><?php echo __('Modified'); ?></th>
 		<td>
 			<?php echo h($media['Media']['modified']); ?>

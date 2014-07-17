@@ -66,6 +66,28 @@ class Media extends AppModel {
 			$this->rowsToUpdate = null;
 			$this->saveAll($rows);
 		}
+
+		if($this->data[$this->alias]['gallery_id']) {
+			$gallery = $this->Gallery->find('first', [
+				'conditions' => [
+					'id' => $this->data[$this->alias]['gallery_id']
+				]
+			]);
+
+			$scores = $this->find('all', [
+				'conditions' => [
+					'Media.gallery_id' => $this->data[$this->alias]['gallery_id']
+				]
+			]);
+
+			$scoreSum = 0;
+			foreach($scores as $score) {
+				$scoreSum += $score[$this->alias]['score'];
+			}
+
+			$gallery['Gallery']['score'] = $scoreSum;
+			$this->Gallery->save($gallery);
+		}
 	}
 
 /**

@@ -41,6 +41,13 @@
 		</td>
 </tr>
 <tr>
+		<th><?php echo __('Score'); ?></th>
+		<td>
+			<?php echo h($gallery['Gallery']['score']); ?>
+			&nbsp;
+		</td>
+</tr>
+<tr>
 		<th><?php echo __('Created'); ?></th>
 		<td>
 			<?php echo h($gallery['Gallery']['created']); ?>
@@ -55,8 +62,8 @@
 	</div>
 </div>
 
-<div class="related row">
-	<div class="col-md-12">
+<div class="related row well">
+	<div class="col-md-12 ">
 	<h3><?php echo __('Related Media'); ?></h3>
 	<?php if (!empty($gallery['Media'])): ?>
 	<table cellpadding = "0" cellspacing = "0" class="table table-striped MediaTable">
@@ -67,6 +74,7 @@
 		<th class='MediaAssetFileField'><?php echo __('Asset File'); ?></th>
 		<th class='MediaOriginField'><?php echo __('Origin'); ?></th>
 		<th class='MediaSortField'><?php echo __('Sort'); ?></th>
+		<th class='MediaScoreField'><?php echo __('Score'); ?></th>
 		<th class='MediaModifiedField'><?php echo __('Modified'); ?></th>
 		<th class="actions"></th>
 	</tr>
@@ -92,6 +100,7 @@
 							</td>
 						<td class='MediaOriginField'><div class='limiter'><?php echo h($media['origin']); ?><div></td>
 						<td class='MediaSortField'><div class='limiter'><?php echo h($media['sort']); ?><div></td>
+						<td class='MediaScoreField'><div class='limiter'><?php echo h($media['score']); ?><div></td>
 						<td class='MediaModifiedField'><div class='limiter'><?php echo h($media['modified']); ?><div></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('<span class="glyphicon glyphicon-search"></span>'), array('controller' => 'media', 'action' => 'view', $media['id']), array('escape' => false)); ?>
