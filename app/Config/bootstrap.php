@@ -76,7 +76,7 @@ CakePlugin::load('Crud');
 CakePlugin::load('Install', ['routes' => true, 'bootstrap' => true]);
 CakePlugin::load('Assets', ['routes' => true, 'bootstrap' => true]);
 CakePlugin::load('Users', ['routes' => true, 'bootstrap' => true]);
-CakePlugin::load('Demos', ['bootstrap' => true]);
+CakePlugin::load('Highscores', []);
 
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:

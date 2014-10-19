@@ -14,15 +14,15 @@ abstract class AppController extends Controller {
 		'RequestHandler',
 		'Crud.Crud' => array(
 			'actions' => array(
+				'index' => 'Crud.Index',
 				'view'  => 'Crud.View',
-				'add'  => [
-						'saveMethod' => 'saveAll'
-				],
-				'delete'  => [
-					'validateId' => false
-				],
-				'edit'  => 'Crud.edit',
-				'index'  => 'Crud.index'
+				'admin_view' => 'Crud.View',
+				'add'  => 'Crud.add',
+
+				'admin_index' => 'Crud.Index',
+				'admin_add' => 'Crud.Add',
+				'admin_edit' => 'Crud.Edit',
+				'admin_delete' => 'Crud.Delete'
 			),
 			'listeners' => array(
 				'Api' => array(

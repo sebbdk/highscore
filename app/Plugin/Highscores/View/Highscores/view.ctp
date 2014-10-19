@@ -1,8 +1,8 @@
-<div class="urlScores view">
+<div class="highscores view">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="page-header">
-				<h3><?php echo __('Url Score'); ?></h3>
+				<h3><?php echo __('Highscore'); ?></h3>
 			</div>
 		</div>
 	</div>
@@ -15,28 +15,21 @@
 				<tr>
 		<th><?php echo __('Id'); ?></th>
 		<td>
-			<?php echo h($urlScore['UrlScore']['id']); ?>
+			<?php echo h($highscore['Highscore']['id']); ?>
 			&nbsp;
 		</td>
 </tr>
 <tr>
-		<th><?php echo __('Asset File'); ?></th>
+		<th><?php echo __('Name'); ?></th>
 		<td>
-			<?php echo h($urlScore['UrlScore']['asset_file']); ?>
+			<?php echo h($highscore['Highscore']['name']); ?>
 			&nbsp;
 		</td>
 </tr>
 <tr>
 		<th><?php echo __('Score'); ?></th>
 		<td>
-			<?php echo h($urlScore['UrlScore']['score']); ?>
-			&nbsp;
-		</td>
-</tr>
-<tr>
-		<th><?php echo __('Created'); ?></th>
-		<td>
-			<?php echo h($urlScore['UrlScore']['created']); ?>
+			<?php echo h($highscore['Highscore']['score']); ?>
 			&nbsp;
 		</td>
 </tr>

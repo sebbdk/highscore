@@ -3,7 +3,7 @@
 * @Author: sebb
 * @Date:   2014-06-14 03:38:51
 * @Last Modified by:   sebb
-* @Last Modified time: 2014-07-04 18:41:27
+* @Last Modified time: 2014-07-22 01:48:48
 */
 App::uses('ModelBehavior', 'Model');
 App::uses('String', 'Utility');
@@ -25,6 +25,24 @@ class AssetFileBehavior extends ModelBehavior {
 
 		if(!file_exists($this->assetFolder)) {
 			mkdir($this->assetFolder);
+		}
+	}
+
+
+	public function download($model, $id) {
+		$media = $model->read(null, $id);
+		if(!empty($media) && strpos($media[$model->alias]['asset_file'], '://') !== false) {
+			$file = file_get_contents($media[$model->alias]['asset_file']);
+
+			$ext = explode('.', $media[$model->alias]['asset_file']);
+			$ext = array_pop($ext);
+			$name = String::uuid() . '.' . $ext;
+
+			$path = $this->assetFolder . DS . $name;
+			file_put_contents($path, $file);
+
+			$media[$model->alias]['asset_file'] = $name;
+			debug($model->save($media));
 		}
 	}
 
